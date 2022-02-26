@@ -5,7 +5,12 @@ static void NmiSR(void);
 static void FaultISR(void);
 static void IntDefaultHandler(void);
 
-extern int main(void);
+extern int main( int argc, char *argv[] );
+
+extern void xPortPendSVHandler( void );
+extern void xPortSysTickHandler( void );
+extern void vPortSVCHandler( void );
+
 extern unsigned long _stack_top;
 
 __attribute__ ((section(".isr_vector")))
@@ -23,11 +28,11 @@ void (* const g_pfnVectors[])(void) =
     0,                                      // Reserved
     0,                                      // Reserved
     0,                                      // Reserved
-    IntDefaultHandler,                      // SVCall handler
+    vPortSVCHandler,						// SVCall handler
     IntDefaultHandler,                      // Debug monitor handler
     0,                                      // Reserved
-    IntDefaultHandler,                      // The PendSV handler
-    IntDefaultHandler,                      // The SysTick handler
+    xPortPendSVHandler,						// The PendSV handler
+    xPortSysTickHandler,					// The SysTick handler
     IntDefaultHandler,                      // GPIO Port A
     IntDefaultHandler,                      // GPIO Port B
     IntDefaultHandler,                      // GPIO Port C
@@ -182,7 +187,7 @@ void ResetISR(void)
         *pulDest++ = 0;
     }
 
-    main();
+    main( 0x00U , 0x00U );
 }
 
 //*****************************************************************************
