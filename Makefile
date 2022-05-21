@@ -16,6 +16,7 @@ INC_FOLDER=\
    $(PJ_FOLDER)/lib/driverlib/inc\
    $(PJ_FOLDER)/lib/FreeRTOS/inc\
    $(PJ_FOLDER)/lib/FreeRTOS/portable\
+   $(PJ_FOLDER)/lib/MemMap\
 
 INC_LIBS=\
 	$(PJ_FOLDER)/lib/driverlib/gcc/libdriver.a\
@@ -25,6 +26,7 @@ CC=arm-none-eabi-gcc
 LD=arm-none-eabi-ld
 OC=arm-none-eabi-objcopy
 
+PRE_LINKER_SCRIPT=tm4c1294_cfg.ld
 LINKER_SCRIPT=tm4c1294.ld
 
 OBJS= \
@@ -51,6 +53,7 @@ all: $(OBJS) $(INC_LIBS)
 	$(OC) --srec-forceS3 -O srec $(OUTPUT_ELF) $(OUTPUT_S19)
 	$(OC) -O ihex $(OUTPUT_ELF) $(OUTPUT_HEX)
 
+
 $(OBJS_PATH)/%.o: $(PJ_FOLDER)/%.c
 	$(CC) $(CFLAGS) -o $@ -c $^
 
@@ -65,6 +68,14 @@ $(OBJS_PATH)/%.o: $(PJ_FOLDER)/lib/FreeRTOS/%.c
 
 $(OBJS_PATH)/%.o: $(PJ_FOLDER)/lib/FreeRTOS/portable/%.c
 	$(CC) $(CFLAGS) -o $@ -c $^
+
+.PHONY: config
+config: $(LINKER_SCRIPT)
+	@mkdir -p $(OUTPUT_FOLDER)
+	@mkdir -p $(OBJS_PATH)
+
+$(LINKER_SCRIPT): $(PRE_LINKER_SCRIPT)
+	$(CC) -E -P -x c $^ -o $(LINKER_SCRIPT)
 
 .PHONY: clean
 clean:

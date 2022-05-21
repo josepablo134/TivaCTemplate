@@ -1,0 +1,29 @@
+{
+	"sections":[
+		{
+			"macro":"CODE",
+			"name":".text.",
+			"pragma":"#pragma arm section code=\"%s\""
+		},
+		{
+			"macro":"CONST",
+			"name":".rodata",
+			"pragma":"#pragma arm section rodata=\"%s\""
+		},
+		{
+			"macro":"VAR_INIT",
+			"name":".data.global.init",
+			"pragma":"#pragma arm section rwdata=\"%s\""
+		},
+		{
+			"macro":"VAR_ZERO",
+			"name":".bss.global.zero",
+			"pragma":"#pragma arm section rwdata=\"%s\""
+		},
+		{
+			"macro":"VAR_NOINIT",
+			"name":".bss.global.rstsafe",
+			"pragma":"#pragma arm section zidata=\"%s\""
+		}
+	]
+}
