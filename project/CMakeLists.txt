@@ -36,18 +36,7 @@ target_link_libraries( ${EXEC_NAME}
 		BSP
 )
 
-include_directories( BEFORE
-		${WORK_DIR}/BSP/libs/MemMap
-		${WORK_DIR}/BSP/libs/RTOS/FreeRTOS
-		${WORK_DIR}/BSP/libs/RTOS/FreeRTOS/inc
-		${WORK_DIR}/BSP/libs/RTOS/FreeRTOS/portable
-		${WORK_DIR}/BSP/libs/TivaWare
-		${WORK_DIR}/BSP/libs/TivaWare/driverlib
-)
-
 target_include_directories(${EXEC_NAME} PRIVATE
-		${BSP_INC_FOLDER}
-		${BSP_CFG_FOLDER}
 		${WORK_DIR}
 )
 

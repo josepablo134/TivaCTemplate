@@ -15,8 +15,6 @@
 
 #include "Board.h"
 
-#define START_SEC_CODE
-#include "MemMap.h"
 void demoTask1( void *pvArg);
 void demoTask2( void *pvArg);
 
@@ -75,5 +73,3 @@ void demoTask2(void *pvArg)
         vTaskDelay(250 / portTICK_PERIOD_MS);
     }
 }
-#define STOP_SEC_CODE
-#include "MemMap.h"

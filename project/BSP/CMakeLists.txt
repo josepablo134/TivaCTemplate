@@ -16,15 +16,6 @@ set(BSP_SRC_FOLDER ${CMAKE_CURRENT_LIST_DIR}/src )
 
 set(BSP_EXEC_ENTRY_POINT ResetISR PARENT_SCOPE)
 
-include_directories( BEFORE
-		${CMAKE_CURRENT_LIST_DIR}/libs/MemMap
-		${CMAKE_CURRENT_LIST_DIR}/libs/RTOS/FreeRTOS
-		${CMAKE_CURRENT_LIST_DIR}/libs/RTOS/FreeRTOS/inc
-		${CMAKE_CURRENT_LIST_DIR}/libs/RTOS/FreeRTOS/portable
-		${CMAKE_CURRENT_LIST_DIR}/libs/TivaWare
-		${CMAKE_CURRENT_LIST_DIR}/libs/TivaWare/driverlib
-)
-
 add_library(${COMPONENT_NAME} STATIC
 		${CMAKE_CURRENT_LIST_DIR}/src/Board.c
 		${CMAKE_CURRENT_LIST_DIR}/src/startup_gcc.c
@@ -36,7 +27,14 @@ target_include_directories(${COMPONENT_NAME} PUBLIC
 		${CMAKE_CURRENT_LIST_DIR}/include
 )
 
-add_subdirectory( ${CMAKE_CURRENT_LIST_DIR}/libs/MemMap )
+target_include_directories(${COMPONENT_NAME} PUBLIC
+		${CMAKE_CURRENT_LIST_DIR}/libs/RTOS/FreeRTOS
+		${CMAKE_CURRENT_LIST_DIR}/libs/RTOS/FreeRTOS/inc
+		${CMAKE_CURRENT_LIST_DIR}/libs/RTOS/FreeRTOS/portable
+		${CMAKE_CURRENT_LIST_DIR}/libs/TivaWare
+		${CMAKE_CURRENT_LIST_DIR}/libs/TivaWare/driverlib
+)
+
 add_subdirectory( ${CMAKE_CURRENT_LIST_DIR}/libs/RTOS )
 add_subdirectory( ${CMAKE_CURRENT_LIST_DIR}/libs/TivaWare )
 
