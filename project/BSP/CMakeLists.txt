@@ -27,6 +27,10 @@ target_include_directories(${COMPONENT_NAME} PUBLIC
 		${CMAKE_CURRENT_LIST_DIR}/include
 )
 
+include_directories(${COMPONENT_NAME} BEFORE
+		${CMAKE_CURRENT_LIST_DIR}/cfg
+)
+
 target_include_directories(${COMPONENT_NAME} PUBLIC
 		${CMAKE_CURRENT_LIST_DIR}/libs/RTOS/FreeRTOS
 		${CMAKE_CURRENT_LIST_DIR}/libs/RTOS/FreeRTOS/inc

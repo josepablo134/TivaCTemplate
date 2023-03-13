@@ -14,9 +14,7 @@
 #include "queue.h"
 
 #include "Board.h"
-
-void demoTask1( void *pvArg);
-void demoTask2( void *pvArg);
+#include "Tasks.h"
 
 int main( int argc, char *argv[] ){
 	Board_init();
@@ -42,34 +40,3 @@ int main( int argc, char *argv[] ){
     return 0;
 }
 
-void demoTask1(void *pvArg)
-{
-    //
-    // Enable the GPIO pin for the LED (PN0).  Set the direction as output, and
-    // enable the GPIO pin for digital function.
-    //
-    GPIOPinTypeGPIOOutput(GPIO_PORTN_BASE, GPIO_PIN_0);
-    for (;;)
-    {
-        GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, GPIO_PIN_0);
-        vTaskDelay(100 / portTICK_PERIOD_MS);
-        GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, 0x00);
-        vTaskDelay(100 / portTICK_PERIOD_MS);
-    }
-}
-
-void demoTask2(void *pvArg)
-{
-    //
-    // Enable the GPIO pin for the LED (PN0).  Set the direction as output, and
-    // enable the GPIO pin for digital function.
-    //
-    GPIOPinTypeGPIOOutput(GPIO_PORTN_BASE, GPIO_PIN_1);
-    for (;;)
-    {
-        GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, GPIO_PIN_1);
-        vTaskDelay(250 / portTICK_PERIOD_MS);
-        GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, 0x00);
-        vTaskDelay(250 / portTICK_PERIOD_MS);
-    }
-}

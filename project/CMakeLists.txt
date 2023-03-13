@@ -31,9 +31,11 @@ include( ${WORK_DIR}/cmake/project.cmake)
 add_executable( ${EXEC_NAME} ${WORK_DIR}/main.c )
 
 add_subdirectory( ${WORK_DIR}/BSP )
+add_subdirectory( ${WORK_DIR}/Tasks )
 
 target_link_libraries( ${EXEC_NAME}
 		BSP
+		Tasks
 )
 
 target_include_directories(${EXEC_NAME} PRIVATE
