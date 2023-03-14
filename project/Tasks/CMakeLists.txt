@@ -17,7 +17,14 @@ target_link_libraries( ${COMPONENT_NAME}
 		BSP
 		RTOS
 		TivaWare
+		Misc
+		System
 		I2C::TivaCTM4C1294
 		SPI::TivaCTM4C1294
+		BUS8080::TivaCTM4C1294
+		ILI9341::TivaCTM4C1294
+		SSD1306::TivaCTM4C1294
+		MCP2515::TivaCTM4C1294
+		simpleGFX::TivaCTM4C1294
 )
 
