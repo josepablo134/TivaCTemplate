@@ -45,19 +45,3 @@ target_include_directories(${COMPONENT_NAME} PUBLIC
 		${CMAKE_CURRENT_LIST_DIR}/driverlib/inc
 )
 
-#target_link_libraries(${COMPONENT_NAME} ${CMAKE_CURRENT_LIST_DIR}/driverlib/gcc/libdriver.a)
-
-target_compile_options(${COMPONENT_NAME}
-		PUBLIC
-		$<$<COMPILE_LANGUAGE:CXX>:
-				-mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard
-		>
-		$<$<COMPILE_LANGUAGE:C>:
-				-nostdlib -fno-exceptions -nostartfiles -nodefaultlibs -g3 -gdwarf-2 -lgcc -lc -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DTARGET_IS_TM4C129_RA1 -DPART_TM4C129XNCZAD
-		>
-		$<$<COMPILE_LANGUAGE:ASM>:
-				-mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard
-		>
-)
-
-

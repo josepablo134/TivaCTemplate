@@ -29,7 +29,7 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 # -fdata-sections       Place each data item into its own section in the output file.
 # -fomit-frame-pointer  Omit the frame pointer in functions that don’t need one.
 # -mabi=aapcs           Defines enums to be a variable sized type.
-set(OBJECT_GEN_FLAGS "-O0 -mthumb -fno-builtin -Wall -ffunction-sections -fdata-sections -fomit-frame-pointer -mabi=aapcs")
+set(OBJECT_GEN_FLAGS "-O0 -mthumb -fno-builtin -Wall -ffunction-sections -fdata-sections -fomit-frame-pointer -mabi=aapcs -fno-exceptions -nostartfiles -g3 -gdwarf-2 -lgcc -lc -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DTARGET_IS_TM4C129_RA1 -DPART_TM4C129XNCZAD")
 
 set(CMAKE_C_FLAGS   "${OBJECT_GEN_FLAGS} -std=gnu99 " CACHE INTERNAL "C Compiler options")
 set(CMAKE_CXX_FLAGS "${OBJECT_GEN_FLAGS} -std=c++11 " CACHE INTERNAL "C++ Compiler options")
@@ -38,7 +38,7 @@ set(CMAKE_ASM_FLAGS "${OBJECT_GEN_FLAGS} -x assembler-with-cpp " CACHE INTERNAL 
 # -Wl,--gc-sections     Perform the dead code elimination.
 # --specs=nano.specs    Link with newlib-nano.
 # --specs=nosys.specs   No syscalls, provide empty implementations for the POSIX system calls.
-set(CMAKE_EXE_LINKER_FLAGS "-Wl,--gc-sections --specs=nano.specs --specs=nosys.specs -mthumb -mabi=aapcs -Wl,-Map=${CMAKE_PROJECT_NAME}.map" CACHE INTERNAL "Linker options")
+set(CMAKE_EXE_LINKER_FLAGS "--specs=nano.specs --specs=nosys.specs -mthumb -mabi=aapcs -fno-exceptions -nostartfiles -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -lgcc -lc -Wl,--gc-sections -Wl,-n" CACHE INTERNAL "Linker options")
 
 #---------------------------------------------------------------------------------------
 # Set debug/release build configuration Options

@@ -16,17 +16,39 @@ At the moment the template toolchain only supports linux OS.
 
  - __project/main.c__ : The file where the magic happens. After the startup code from the BSP, the system's entry point is defined here.
 
+ - __project/package.json__ : Packages descriptor file meant to be used with [cpacman](https://github.com/josepablo134/SimpleSourcePackageManager) package manager.
+
 # CMake and Ninja
 
 [CMake](https://cmake.org/) is a tool for generation and automation of code. The name is an abbreviation of __cross platform make__. It is a multiplatform, open-source tool that can generate Makefiles (or different build system projects like Ninja) from a simple and more readable configuration file. CMake in a nutshell is a syntax to describe a project and the compiler environment so it can be abstracted from the final build system file (Makefiles, Ninja.build, Eclipse .cproject, etc)
 
 [Ninja](https://ninja-build.org/), in other hand, is a build system tool meant to replace Makefiles. It is focused by design to run as fast as possible. It already knows the number of cores of your machine, so it dynamically decides when and how to parallelize the build process.
 
+# CPacMan (Source Package Manager)
+
+Is a simple package manager (inspired on npm) meant to download source code and integrate it to your project with a simple json descriptor file.
+
+Check it out: [cpacman](https://github.com/josepablo134/SimpleSourcePackageManager)
+
+## Dependencies installation
+
+Just navigate to the `project` folder and invoke the package manager:
+
+```.sh
+$ cd project
+$ cpacman install
+```
+
+This will create a `c_modules` folder containing a CMake file required to add the packages to the project.
+
+For more information about how cpacman works and how to use it, check out: [cpacman](https://github.com/josepablo134/SimpleSourcePackageManager)
+
 ## Build Process
 
 The build process is pretty straightforward, just create a build folder, invoke CMake over the `project` folder and then run ninja (I recommend to use Ninja instead of Make).
 
 ```.sh
+$ #Assuming you are at the root folder of this repo:
 $ mkdir build
 $ cd build
 $ cmake ../project -GNinja

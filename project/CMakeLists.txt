@@ -33,6 +33,9 @@ add_executable( ${EXEC_NAME} ${WORK_DIR}/main.c )
 add_subdirectory( ${WORK_DIR}/BSP )
 add_subdirectory( ${WORK_DIR}/Tasks )
 
+# package.json
+add_subdirectory( ${WORK_DIR}/c_modules )
+
 target_link_libraries( ${EXEC_NAME}
 		BSP
 		Tasks
@@ -42,28 +45,9 @@ target_include_directories(${EXEC_NAME} PRIVATE
 		${WORK_DIR}
 )
 
-# ===================================================================
-# Compile and Link options
-# ===================================================================
-target_compile_options(${EXEC_NAME}
-		PUBLIC
-		$<$<COMPILE_LANGUAGE:CXX>:
-				-mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard
-		>
-		$<$<COMPILE_LANGUAGE:C>:
-				-nostdlib -fno-exceptions -nostartfiles -nodefaultlibs -g3 -gdwarf-2 -lgcc -lc -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DTARGET_IS_TM4C129_RA1 -DPART_TM4C129XNCZAD
-		>
-		$<$<COMPILE_LANGUAGE:ASM>:
-				-mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard
-		>
-)
-
 target_link_options(${EXEC_NAME}
 		PUBLIC
-		# Entry point of the whole system.
-		#-Wl,-eResetISR
-		-Wl,-e${BSP_EXEC_ENTRY_POINT}
-		-fno-exceptions -nostartfiles -lgcc -lc -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -Wl,-n -Wl,-T ${LINKER_SCRIPT} -Wl,-Map ${OUTPUT_MAP}
+		-Wl,-e${BSP_EXEC_ENTRY_POINT} -Wl,-T ${LINKER_SCRIPT} -Wl,-Map ${OUTPUT_MAP}
 )
 
 # Generate Linker Script from configuration file
