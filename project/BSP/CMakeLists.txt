@@ -35,15 +35,13 @@ target_include_directories(${COMPONENT_NAME} PUBLIC
 		${CMAKE_CURRENT_LIST_DIR}/libs/RTOS/FreeRTOS
 		${CMAKE_CURRENT_LIST_DIR}/libs/RTOS/FreeRTOS/inc
 		${CMAKE_CURRENT_LIST_DIR}/libs/RTOS/FreeRTOS/portable
-		${CMAKE_CURRENT_LIST_DIR}/libs/TivaWare
-		${CMAKE_CURRENT_LIST_DIR}/libs/TivaWare/driverlib
 )
 
 add_subdirectory( ${CMAKE_CURRENT_LIST_DIR}/libs/RTOS )
-add_subdirectory( ${CMAKE_CURRENT_LIST_DIR}/libs/TivaWare )
 
 target_link_libraries( ${COMPONENT_NAME}
 		RTOS
+		#Imported from microMiddlewares repo with package.json
 		TivaWare
 )
 
