@@ -47,7 +47,7 @@ target_include_directories(${EXEC_NAME} PRIVATE
 
 target_link_options(${EXEC_NAME}
 		PUBLIC
-		-Wl,-e${BSP_EXEC_ENTRY_POINT} -Wl,-T ${LINKER_SCRIPT} -Wl,-Map ${OUTPUT_MAP}
+		-Wl,-e${BSP_EXEC_ENTRY_POINT} -Wl,-T ${LINKER_SCRIPT} -Wl,-Map=${OUTPUT_MAP}
 )
 
 # Generate Linker Script from configuration file

@@ -5,6 +5,6 @@
   "author": "Josepablo C.",
   "license": "ISC",
   "dependencies": [
-		{ "name":"microMiddlewares", "uri":"git@github.com:josepablo134/microMiddlewares.git", "type":"git" }
+		{ "name":"microMiddlewares", "uri":"https://github.com/josepablo134/microMiddlewares.git", "type":"git" }
   ]
 }
