@@ -7,16 +7,17 @@
         {
             "name": "Cortex Debug",
             "cwd": "${workspaceRoot}",
-            "executable": "./output/output.elf",
+            "executable": "./build/bin/template.elf",
             "request": "launch",
             "type": "cortex-debug",
             "servertype": "openocd",
             "searchDir": [ 
                 "${workspaceRoot}",
-                "/usr/share/openocd/scripts/board/",
+                // "/usr/share/openocd/scripts/board/",
+                "D:/opt/openocd-v0.12.0-i686-w64-mingw32/share/openocd/scripts/board/",
             ],
             "configFiles": [
-                "ti_ek-tm4c1294xl.cfg"
+                "ti_ek-tm4c123gxl.cfg"
             ]
         }
     ]

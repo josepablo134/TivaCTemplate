@@ -26,38 +26,34 @@ void Tasks_init( void ){
 
 void demoTask1(void *pvArg)
 {
+    const uint32_t      ms_period = 125/portTICK_PERIOD_MS;
+    const uint32_t      port = GPIO_PORTF_BASE;
+    const uint8_t       pin = GPIO_PIN_1;// TM4C123GXL board, Red Led
     //
     // Enable the GPIO pin for the LED (PN0).  Set the direction as output, and
     // enable the GPIO pin for digital function.
     //
-    GPIOPinTypeGPIOOutput(GPIO_PORTN_BASE, GPIO_PIN_0);
-    GPIOPinTypeGPIOOutput(GPIO_PORTA_BASE, GPIO_PIN_0);
+    GPIOPinTypeGPIOOutput(port, pin);
     for (;;)
     {
-        GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, GPIO_PIN_0);
-        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_0, GPIO_PIN_0);
-        vTaskDelay(125 / portTICK_PERIOD_MS);
-        GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, 0x00);
-        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_0, 0x00);
-        vTaskDelay(125 / portTICK_PERIOD_MS);
+        GPIOPinWrite(port, pin, ~GPIOPinRead( port, pin ) );
+        vTaskDelay(ms_period);
     }
 }
 
 void demoTask2(void *pvArg)
 {
+    const uint32_t      ms_period = 250/portTICK_PERIOD_MS;
+    const uint32_t      port = GPIO_PORTF_BASE;
+    const uint8_t       pin = GPIO_PIN_2;// TM4C123GXL board, Blue Led
     //
     // Enable the GPIO pin for the LED (PN0).  Set the direction as output, and
     // enable the GPIO pin for digital function.
     //
-    GPIOPinTypeGPIOOutput(GPIO_PORTN_BASE, GPIO_PIN_1);
-    GPIOPinTypeGPIOOutput(GPIO_PORTA_BASE, GPIO_PIN_1);
+    GPIOPinTypeGPIOOutput(port, pin);
     for (;;)
     {
-        GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, GPIO_PIN_1);
-        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_1, GPIO_PIN_1);
-        vTaskDelay(250 / portTICK_PERIOD_MS);
-        GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_1, 0x00);
-        GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_1, 0x00);
-        vTaskDelay(250 / portTICK_PERIOD_MS);
+        GPIOPinWrite(port, pin, ~GPIOPinRead( port, pin ) );
+        vTaskDelay(ms_period);
     }
 }

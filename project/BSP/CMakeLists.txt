@@ -18,7 +18,8 @@ set(BSP_EXEC_ENTRY_POINT ResetISR PARENT_SCOPE)
 
 add_library(${COMPONENT_NAME} STATIC
 		${CMAKE_CURRENT_LIST_DIR}/src/Board.c
-		${CMAKE_CURRENT_LIST_DIR}/src/startup_gcc.c
+		${CMAKE_CURRENT_LIST_DIR}/src/startup_gcc_tm4c123gh6pm.c
+		${CMAKE_CURRENT_LIST_DIR}/src/startup_gcc_tm4c1294ncpdt.c
 )
 
 target_include_directories(${COMPONENT_NAME} PUBLIC

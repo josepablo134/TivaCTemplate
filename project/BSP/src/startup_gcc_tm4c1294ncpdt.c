@@ -1,5 +1,7 @@
 #include <stdint.h>
 
+#if PART_TM4C129XNCZAD
+
 void ResetISR(void);
 static void NmiSR(void);
 static void FaultISR(void);
@@ -233,3 +235,4 @@ static void IntDefaultHandler(void)
 }
 
 
+#endif

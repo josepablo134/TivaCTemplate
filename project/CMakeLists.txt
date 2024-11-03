@@ -14,6 +14,8 @@ project( TivaCTemplate
 		LANGUAGES C ASM
 )
 
+include(cmake/toolchain-epilog.cmake)
+
 # ===================================================================
 # Project Set-Up
 # ===================================================================
