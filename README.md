@@ -4,7 +4,9 @@ A template for projects based on TivaC microcontrollers and FreeRTOS made with C
 
 This template has been tested with TivaC (TM4C1294NCPDT) along with driverlib from TI's TivaWare SDK.
 
-At the moment the template toolchain only supports linux OS.
+Recently updated and tested on TM4C123G succesfully.
+
+This template supports Linux and Windows.
 
 # Project structure
 
